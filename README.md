@@ -10,9 +10,10 @@ A stunning, interactive macOS-inspired portfolio website built with Next.js and 
 
 ## 👨‍💻 Demo
 
-Demo Link: [http://danielprior.dev](http://danielprior.dev)
+<!-- Demo Link: [http://danielprior.dev](http://danielprior.dev) -->
 
 ### ✨ Features
+
 
 - 🖥️ Realistic macOS interface with dark/light mode
 - 🚀 Interactive desktop experience with working windows
@@ -25,7 +26,6 @@ Demo Link: [http://danielprior.dev](http://danielprior.dev)
   - Mail (contact link)
   - GitHub (profile link)
   - Spotify (music player)
-  - YouTube (video channel)
   - FaceTime (video chat demo)
   - Snake (just for fun)
   - Weather (mock data)
@@ -49,7 +49,7 @@ Demo Link: [http://danielprior.dev](http://danielprior.dev)
 git clone https://github.com/daprior/danielprior-macos.git
 cd macos-portfolio
 
-2. Install 
+2. Install
 
 npm install
 # or

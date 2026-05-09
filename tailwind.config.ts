@@ -48,6 +48,15 @@ const config: Config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        fontFamily: {
+          apple: [
+            "-apple-system",
+            "BlinkMacSystemFont",
+            "SF Pro Display",
+            "sans-serif",
+          ],
+        },
+
       },
     },
   },

@@ -12,7 +12,6 @@ import VSCode from "@/components/apps/vscode"
 import FaceTime from "@/components/apps/facetime"
 import Terminal from "@/components/apps/terminal"
 import Mail from "@/components/apps/mail"
-import YouTube from "@/components/apps/youtube"
 import Spotify from "@/components/apps/spotify"
 import Snake from "@/components/apps/snake"
 import Weather from "@/components/apps/weather"
@@ -26,7 +25,6 @@ const componentMap: Record<string, React.ComponentType<{ isDarkMode?: boolean }>
   FaceTime,
   Terminal,
   Mail,
-  YouTube,
   Spotify,
   Snake,
   Weather,
@@ -200,7 +198,7 @@ export default function Window({ window, isActive, onClose, onFocus, isDarkMode 
   return (
     <div
       ref={windowRef}
-      className={`absolute rounded-lg overflow-hidden shadow-2xl transition-shadow ${isActive ? "shadow-2xl z-10" : "shadow-lg z-0"}`}
+      className={`absolute rounded-3xl overflow-hidden shadow-2xl transition-shadow ${isActive ? "shadow-2xl z-10" : "shadow-lg z-0"}`}
       style={{
         left: `${position.x}px`,
         top: `${position.y}px`,
@@ -211,7 +209,7 @@ export default function Window({ window, isActive, onClose, onFocus, isDarkMode 
     >
       {/* Title bar */}
       <div className={`h-8 flex items-center px-3 ${titleBarClass}`} onMouseDown={handleTitleBarMouseDown}>
-        <div className="window-controls flex items-center space-x-2 mr-4">
+        <div className="window-controls flex items-center space-x-2  mr-4">
           <button
             className="w-3 h-3 rounded-full bg-red-500 hover:bg-red-600 flex items-center justify-center"
             onClick={onClose}

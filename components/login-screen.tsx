@@ -45,44 +45,65 @@ export default function LoginScreen({
   const formattedTime = time.toLocaleTimeString("en-US", {
     hour: "numeric",
     minute: "2-digit",
-    hour12: true,
+    hour12: false,
   });
 
+
   const formattedDate = time.toLocaleDateString("en-US", {
-    weekday: "long",
-    month: "long",
+    weekday: "short",
+    month: "short",
     day: "numeric",
   });
 
+
   // Choose wallpaper based on dark/light mode
-  const wallpaper = isDarkMode ? "/wallpaper-night.jpg" : "/wallpaper-day.jpg";
+  const wallpaper = isDarkMode ? "/monterey.jpg" : "/wallpaper-day.jpg";
 
   return (
     <div
-      className="h-screen w-screen bg-cover bg-center flex flex-col items-center justify-center"
+      className="h-screen w-screen bg-cover bg-center flex flex-col items-center justify-between p-10"
       style={{ backgroundImage: `url('${wallpaper}')` }}
     >
-      <div className="flex flex-col items-center mb-8">
-        <div className="text-white text-5xl font-light mb-2">
+      <div className="flex flex-col items-center mb-8 select-none">
+        <div
+          className="
+      text-white/80
+      text-2xl
+      font-medium
+      tracking-wide
+
+      font-apple
+    "
+        >
+          {formattedDate}
+        </div>
+        <div
+          className="
+    text-white
+    text-[120px]
+    font-bold
+    tracking-[-4px]
+    leading-none
+    font-apple
+  "
+        >
           {formattedTime}
         </div>
-        <div className="text-white text-xl font-light">{formattedDate}</div>
+
+
+
+
       </div>
+
+
+
 
       <div className="flex flex-col items-center">
         <div className="w-24 h-24 rounded-full bg-slate-800 flex items-center justify-center mb-4">
-          <span className="text-white text-5xl font-bold">D</span>
+          <span className="text-white text-5xl font-bold">PG</span>
         </div>
-        {/* <div className="w-24 h-24 rounded-full overflow-hidden bg-gray-300 flex items-center justify-center mb-4">
-          <Image
-            src="/letter-d.png"
-            alt="User avatar"
-            width={96}
-            height={96}
-            className="object-cover w-full h-full"
-          />
-        </div> */}
-        <h2 className="text-white text-2xl font-medium mb-6">Daniel</h2>
+
+        <h2 className="text-white text-2xl font-semibold mb-6">Prabhat Gautam</h2>
 
         <form onSubmit={handleSubmit} className="flex flex-col items-center">
           <Input
@@ -93,9 +114,8 @@ export default function LoginScreen({
               setPassword(e.target.value);
               setError(false);
             }}
-            className={`w-64 bg-white/20 backdrop-blur-md border-0 text-white placeholder:text-white/70 mb-2 ${
-              error ? "ring-2 ring-red-500" : ""
-            }`}
+            className={`w-64 bg-white/20 backdrop-blur-md border-0 rounded-3xl text-center text-white placeholder:text-white/70 mb-2 ${error ? "ring-2 ring-red-500" : ""
+              }`}
           />
 
           {error && (
@@ -104,25 +124,14 @@ export default function LoginScreen({
           <Button
             type="submit"
             variant="outline"
-            className="mt-2 bg-white/20 backdrop-blur-md border-0 text-white hover:bg-white/30"
+            className="mt-2 bg-white/20 backdrop-blur-md border-0 text-white hover:bg-white/30 hidden"
           >
             Login
           </Button>
         </form>
       </div>
 
-      <div className="fixed bottom-8">
-        <button
-          className="text-white/80 hover:text-white p-2 rounded-full hover:bg-white/10"
-          onClick={onToggleDarkMode}
-        >
-          {isDarkMode ? (
-            <Sun className="w-6 h-6" />
-          ) : (
-            <Moon className="w-6 h-6" />
-          )}
-        </button>
-      </div>
+
     </div>
   );
 }

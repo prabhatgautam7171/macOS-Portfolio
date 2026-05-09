@@ -66,15 +66,16 @@ export default function ControlCenter({
   }
 
   return (
-    <div
-      className="fixed top-8 right-4 w-80 bg-gray-800/80 backdrop-blur-xl rounded-xl overflow-hidden shadow-2xl z-40"
+
+<div
+      className="fixed top-8 mt-2 right-4 w-80 bg-white-800/80 backdrop-blur-md border border-white/20 rounded-3xl overflow-hidden shadow-2xl z-40"
       onClick={(e) => e.stopPropagation()}
     >
       <div className="p-4">
         <div className="grid grid-cols-4 gap-3 mb-4">
           <button
-            className={`flex flex-col items-center justify-center p-3 rounded-xl ${
-              wifiEnabled ? "bg-blue-500" : "bg-gray-700"
+            className={`flex flex-col items-center justify-center p-3 rounded-3xl ${
+              wifiEnabled ? "bg-blue-500" : "bg-white-800/80"
             }`}
             onClick={toggleWifi}
           >
@@ -83,8 +84,8 @@ export default function ControlCenter({
           </button>
 
           <button
-            className={`flex flex-col items-center justify-center p-3 rounded-xl ${
-              bluetoothEnabled ? "bg-blue-500" : "bg-gray-700"
+            className={`flex flex-col items-center justify-center p-3 rounded-3xl ${
+              bluetoothEnabled ? "bg-blue-500" :"bg-white-800/80"
             }`}
             onClick={() => setBluetoothEnabled(!bluetoothEnabled)}
           >
@@ -93,8 +94,8 @@ export default function ControlCenter({
           </button>
 
           <button
-            className={`flex flex-col items-center justify-center p-3 rounded-xl ${
-              isDarkMode ? "bg-blue-500" : "bg-gray-700"
+            className={`flex flex-col items-center justify-center p-3 rounded-3xl ${
+              isDarkMode ? "bg-blue-500" : "bg-white-800/80"
             }`}
             onClick={onToggleDarkMode}
           >
@@ -103,8 +104,8 @@ export default function ControlCenter({
           </button>
 
           <button
-            className={`flex flex-col items-center justify-center p-3 rounded-xl ${
-              isFullscreen ? "bg-blue-500" : "bg-gray-700"
+            className={`flex flex-col items-center justify-center p-3 rounded-3xl ${
+              isFullscreen ? "bg-blue-500" : "bg-white-800/80"
             }`}
             onClick={toggleFullscreen}
           >
@@ -113,7 +114,7 @@ export default function ControlCenter({
           </button>
         </div>
 
-        <div className="bg-gray-700 rounded-xl p-3 mb-3">
+        <div className="bg-white-800/80 rounded-xl p-3 mb-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-white text-sm">Display</span>
             <span className="text-white text-sm">{brightness}%</span>
@@ -124,11 +125,11 @@ export default function ControlCenter({
             max="100"
             value={brightness}
             onChange={(e) => onBrightnessChange(Number.parseInt(e.target.value))}
-            className="w-full h-1 bg-gray-600 rounded-full appearance-none cursor-pointer"
+            className="w-full h-1 bg-white-800/80 rounded-full appearance-none cursor-pointer"
           />
         </div>
 
-        <div className="bg-gray-700 rounded-xl p-3">
+        <div className="bg-white-800/80 rounded-xl p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-white text-sm">Volume</span>
             <span className="text-white text-sm">{volume}%</span>
@@ -145,11 +146,12 @@ export default function ControlCenter({
               max="100"
               value={volume}
               onChange={(e) => setVolume(Number.parseInt(e.target.value))}
-              className="flex-1 h-1 bg-gray-600 rounded-full appearance-none cursor-pointer"
+              className="flex-1 h-1 bg-white-800/80 rounded-full appearance-none cursor-pointer"
             />
           </div>
         </div>
       </div>
     </div>
+
   )
 }

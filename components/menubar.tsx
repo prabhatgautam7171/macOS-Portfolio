@@ -3,8 +3,10 @@
 import type React from "react"
 
 import { useState, useRef, useEffect } from "react"
-import { Search } from "lucide-react"
+import { Search, SearchIcon, User2, Wifi, WifiLow, WifiOff } from "lucide-react"
 import { AppleIcon } from "@/components/icons"
+import { Avatar } from "./ui/avatar"
+import Image from "next/image"
 
 interface MenubarProps {
   time: Date
@@ -37,14 +39,20 @@ export default function Menubar({
   const menuRef = useRef<HTMLDivElement>(null)
   const wifiRef = useRef<HTMLDivElement>(null)
 
-  const formattedTime = time.toLocaleString("en-US", {
-    weekday: "short",
-    month: "short",
-    day: "numeric",
+  const weekday = time.toLocaleDateString("en-US", { weekday: "short" });
+  const day = time.getDate();
+  const month = time.toLocaleDateString("en-US", { month: "short" });
+
+  const timePart = time.toLocaleTimeString("en-US", {
     hour: "numeric",
     minute: "2-digit",
     hour12: true,
-  })
+  });
+
+  const formattedTime = `${weekday} ${day} ${month}  ${timePart}`;
+
+
+
 
   useEffect(() => {
     // Try to get battery information if available
@@ -116,26 +124,29 @@ export default function Menubar({
     setShowWifiToggle(!showWifiToggle)
   }
 
-  const menuBgClass = isDarkMode ? "bg-black/40 backdrop-blur-md" : "bg-white/20 backdrop-blur-md"
-  const dropdownBgClass = isDarkMode ? "bg-gray-800/90 backdrop-blur-md" : "bg-gray-200/90 backdrop-blur-md"
+  const menuBgClass =  "bg-white/50 backdrop-blur-3xl";
+
+
+
+  const dropdownBgClass = isDarkMode ? "bg-white-800/80 backdrop-blur-md border border-white/20 rounded-3xl overflow-hidden shadow-2xl z-40" : "bg-white-800/80 backdrop-blur-md border-white/20"
   const textClass = isDarkMode ? "text-white" : "text-gray-800"
   const hoverClass = isDarkMode ? "hover:bg-blue-600" : "hover:bg-blue-400"
 
   return (
     <div
       ref={menuRef}
-      className={`fixed top-0 left-0 right-0 h-6 ${menuBgClass} z-50 flex items-center px-4 ${textClass} text-sm`}
+      className={`fixed top-0 left-0 right-0 h-8 ${menuBgClass} z-50 flex items-center px-4 ${textClass} text-sm`}
     >
       <div className="flex-1 flex items-center">
         <button
-          className="flex items-center mr-4 hover:bg-white/10 px-2 py-0.5 rounded"
+          className="flex items-center  hover:bg-white/10 px-2 py-0.5 rounded"
           onClick={() => toggleMenu("apple")}
         >
-          <AppleIcon className="w-4 h-4" />
+          <AppleIcon className="w-4 h-4 text-black" />
         </button>
 
         {activeMenu === "apple" && (
-          <div className={`absolute top-6 left-2 ${dropdownBgClass} rounded-lg shadow-xl ${textClass} py-1 w-56`}>
+          <div className={`absolute mt-3 top-6 left-2 ${dropdownBgClass} rounded-lg shadow-xl ${textClass} py-1 w-56`}>
             <button className={`w-full text-left px-4 py-1 ${hoverClass}`}>About This Mac</button>
             <div className="border-t border-gray-700 my-1"></div>
             <button className={`w-full text-left px-4 py-1 ${hoverClass}`}>System Settings...</button>
@@ -152,68 +163,71 @@ export default function Menubar({
             </button>
             <div className="border-t border-gray-700 my-1"></div>
             <button className={`w-full text-left px-4 py-1 ${hoverClass}`} onClick={onLogout}>
-              Log Out Daniel...
+              Log Out Prabhat Gautam
             </button>
           </div>
         )}
 
-        {activeWindow && (
+        {activeWindow ? (
           <button
-            className={`mr-4 font-medium hover:bg-white/10 px-2 py-0.5 rounded ${activeMenu === "app" ? "bg-white/10" : ""}`}
+            className={` font-bold text-black hover:bg-white/10 px-2 py-0.5 rounded ${activeMenu === "app" ? "bg-white/10" : ""}`}
             onClick={() => toggleMenu("app")}
           >
             {activeWindow.title}
           </button>
+        ) : (
+          <button
+            className={` font-bold text-black hover:bg-white/10 px-2 py-0.5 rounded`}
+
+          >
+            Home
+          </button>
         )}
+
+        <button
+          className={` hover:bg-white/10 text-black px-2 py-0.5 rounded`}
+
+        >
+          Contact
+        </button>
+
+        <button
+          className={`mr-4 hover:bg-white/10 text-black px-2 py-0.5 rounded`}
+
+        >
+          Help
+        </button>
+
+
       </div>
 
-      <div className="flex items-center space-x-3">
-        <span className="mr-1">{batteryLevel}%</span>
+      <div className="flex items-center space-x-5">
+        <span className="text-black font-semibold text-sm">{batteryLevel}%</span>
         <div className="relative">
-          <div className="w-6 h-3 border border-current rounded-sm relative">
-            <div className="absolute top-0 left-0 bottom-0 bg-current" style={{ width: `${batteryLevel}%` }}></div>
-            <div className="absolute -right-1 top-1/2 transform -translate-y-1/2 w-1 h-2 bg-current rounded-r-sm"></div>
+          <div className="w-6 h-3 border text-gray-600 border-current rounded-sm relative">
+            <div className="absolute text-yellow-300 top-0 left-0 bottom-0 bg-current" style={{ width: `${batteryLevel}%` }}></div>
+            <div className="absolute -right-1 top-1/2 transform -translate-y-1/2 w-1 h-2 bg-current rounded-r-md"></div>
             {isCharging && <div className="absolute inset-0 flex items-center justify-center text-xs">⚡</div>}
           </div>
         </div>
 
         <div className="relative">
           <button className="wifi-icon" onClick={toggleWifiPopup}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="w-5 h-5"
-            >
-              {wifiEnabled ? (
-                <>
-                  <path d="M5 12.55a11 11 0 0 1 14.08 0" />
-                  <path d="M1.42 9a16 16 0 0 1 21.16 0" />
-                  <path d="M8.53 16.11a6 6 0 0 1 6.95 0" />
-                  <circle cx="12" cy="20" r="1" />
-                </>
+            {
+              wifiEnabled ? (
+                <Image alt="wifi" src={'/wifi.svg'} width={15} height={15} />
               ) : (
-                <>
-                  <line x1="1" y1="1" x2="23" y2="23" />
-                  <path d="M16.72 11.06A10.94 10.94 0 0 1 19 12.55" />
-                  <path d="M5 12.55a10.94 10.94 0 0 1 5.17-2.39" />
-                  <path d="M10.71 5.05A16 16 0 0 1 22.58 9" />
-                  <path d="M1.42 9a15.91 15.91 0 0 1 4.7-2.88" />
-                  <path d="M8.53 16.11a6 6 0 0 1 6.95 0" />
-                  <circle cx="12" cy="20" r="1" />
-                </>
-              )}
-            </svg>
+                <Image alt="wifioff" src={'/wifioff.svg'} width={18} height={18} className="font-bold" />
+              )
+            }
+
+
           </button>
 
           {showWifiToggle && (
             <div
               ref={wifiRef}
-              className={`absolute top-6 right-0 ${dropdownBgClass} rounded-lg shadow-xl ${textClass} py-3 px-4 w-64`}
+              className={`absolute mt-3 top-6 right-0 ${dropdownBgClass} rounded-lg shadow-xl ${textClass} py-3 px-4 w-64`}
             >
               <div className="flex items-center justify-between">
                 <span className="font-medium">Wi-Fi</span>
@@ -227,22 +241,21 @@ export default function Menubar({
         </div>
 
         <button onClick={onSpotlightClick}>
-          <Search className="w-4 h-4" />
+
+
+          <Image alt="search" src={'/search.svg'} width={15} height={15} />
+
         </button>
 
         <button onClick={onControlCenterClick} className="flex items-center justify-center">
-          <img
-            src="/control-center-icon.webp"
-            alt="Control Center"
-            className="w-4 h-4"
-            style={{
-              filter: isDarkMode ? "invert(1)" : "none",
-              opacity: 0.9,
-            }}
-          />
+        <Image alt="search" src={'/mode.svg'} width={15} height={15} />
+
         </button>
 
-        <span>{formattedTime}</span>
+
+
+        <span className="text-sm text-black  tracking-wide"
+        >{formattedTime}</span>
       </div>
     </div>
   )

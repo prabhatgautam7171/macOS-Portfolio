@@ -16,7 +16,6 @@ const dockApps = [
   { id: "facetime", title: "FaceTime", icon: "/facetime.png", component: "FaceTime" },
   { id: "terminal", title: "Terminal", icon: "/terminal.png", component: "Terminal" },
   { id: "github", title: "GitHub", icon: "/github.png", component: "GitHub" },
-  { id: "youtube", title: "YouTube", icon: "/youtube.png", component: "YouTube" },
   { id: "spotify", title: "Spotify", icon: "/spotify.png", component: "Spotify" },
 ]
 
@@ -127,8 +126,8 @@ export default function Dock({ onAppClick, onLaunchpadClick, activeAppIds, isDar
       {/* Mobile expanded menu */}
       {isMobile && showMobileMenu && (
         <div
-          className={`absolute bottom-20 left-1/2 transform -translate-x-1/2 w-[280px] 
-          ${isDarkMode ? "bg-gray-800/90" : "bg-white/90"} backdrop-blur-xl 
+          className={`absolute bottom-20 left-1/2 transform -translate-x-1/2 w-[280px]
+          ${isDarkMode ? "bg-gray-800/90" : "bg-white/90"} backdrop-blur-xl
           rounded-xl border border-white/20 shadow-lg p-4 mb-2`}
         >
           <div className="grid grid-cols-4 gap-4">
@@ -156,8 +155,8 @@ export default function Dock({ onAppClick, onLaunchpadClick, activeAppIds, isDar
 
       {/* Main dock */}
       <div
-        className={`px-3 py-2 rounded-2xl 
-          ${isDarkMode ? "bg-white/10" : "bg-white/60"} backdrop-blur-xl 
+        className={`px-3 py-2 rounded-2xl
+          ${isDarkMode ? "bg-white/10" : "bg-white/60"} backdrop-blur-xl
           flex items-end border border-white/20 shadow-lg
           ${isMobile ? "h-20" : "h-16"}`}
         onMouseMove={handleMouseMove}
@@ -216,8 +215,8 @@ export default function Dock({ onAppClick, onLaunchpadClick, activeAppIds, isDar
           >
             <div className="relative cursor-pointer">
               <div
-                className={`w-14 h-14 rounded-full flex items-center justify-center 
-                ${isDarkMode ? "bg-gray-700" : "bg-gray-200"} 
+                className={`w-14 h-14 rounded-full flex items-center justify-center
+                ${isDarkMode ? "bg-gray-700" : "bg-gray-200"}
                 ${showMobileMenu ? (isDarkMode ? "bg-blue-700" : "bg-blue-200") : ""}`}
               >
                 <MoreHorizontal className={`w-8 h-8 ${isDarkMode ? "text-white" : "text-gray-800"}`} />

@@ -17,8 +17,8 @@ export default function Terminal({ isDarkMode = true }: TerminalProps) {
   const terminalRef = useRef<HTMLDivElement>(null)
 
   // Terminal is always dark
-  const bgColor = "bg-black"
-  const textColor = "text-green-400"
+  const bgColor = "bg-black-400"
+  const textColor = "text-white"
 
   useEffect(() => {
     // Focus input when terminal is clicked
@@ -92,7 +92,7 @@ export default function Terminal({ isDarkMode = true }: TerminalProps) {
     const mainCommand = args[0]
 
     // Add command to history
-    setHistory((prev) => [...prev, `daniel@macbook-pro ~ $ ${cmd}`, ""])
+    setHistory((prev) => [...prev, `prabhat@macbook-pro ~ % ${cmd}`, ""])
 
     // Process command
     switch (mainCommand) {
@@ -131,14 +131,14 @@ export default function Terminal({ isDarkMode = true }: TerminalProps) {
         break
 
       case "whoami":
-        setHistory((prev) => [...prev, "daniel", ""])
+        setHistory((prev) => [...prev, "Prabhat", ""])
         break
 
       case "about":
         setHistory((prev) => [
           ...prev,
           "┌─────────────────────────────────────┐",
-          "│ Daniel Prior                        │",
+          "│ Prabhat                        │",
           "│ Frontend Developer & UI/UX Designer │",
           "└─────────────────────────────────────┘",
           "",
@@ -180,14 +180,7 @@ export default function Terminal({ isDarkMode = true }: TerminalProps) {
             "• NoSQL (MongoDB)",
             "• RESTful APIs / GraphQL",
             "",
-            "Game Development:",
-            "• Unity / Unreal Engine",
-            "• C# & C++",
-            "• Game Design Principles",
-            "• Game Mechanics & Systems",
-            "• Blender 3D / 3D Modeling",
-            "• Animations for agri machinery & vehicles",
-            "• Godot Engine",
+
             "",
             "DevOps & Tools:",
             "• Docker / Containerization",
@@ -207,10 +200,10 @@ export default function Terminal({ isDarkMode = true }: TerminalProps) {
           "│ Contact │",
           "└─────────┘",
           "",
-          "Email: mail@danielprior.dk",
-          "GitHub: github.com/daprior",
-          "LinkedIn: linkedin.com/in/daniel-prior-53a679195/",
-          "Website: danielprior.dev",
+          "Email: prabhatgautam347@gmail.com",
+          "GitHub: github.com/prabhatgauat7171",
+          "LinkedIn: linkedin.com/in/prabhat/",
+
           "",
         ])
         break
@@ -234,7 +227,7 @@ export default function Terminal({ isDarkMode = true }: TerminalProps) {
       ))}
 
       <div className="flex">
-        <span className="mr-2">daniel@macbook-pro ~ $</span>
+        <span className="mr-2">prabhat@macbook-pro ~ %</span>
         <input
           ref={inputRef}
           type="text"
